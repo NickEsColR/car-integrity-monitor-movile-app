@@ -5,7 +5,7 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Menu
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
-import com.example.car_integrity_monitor_movile_app.ui.screens.StateScreen
+import com.example.car_integrity_monitor_movile_app.ui.screens.CarStateScreen
 
 
 
@@ -34,7 +34,7 @@ fun CimApp(
     modifier: Modifier = Modifier
 ){
     Scaffold(topBar = { CimAppBar()}) {
-        StateScreen()
+        CarStateScreen()
 
     }
 }

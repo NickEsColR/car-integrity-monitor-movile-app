@@ -5,7 +5,7 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 
 @Composable
-fun StateScreen(){
+fun CarStateScreen(){
     Button(onClick = { /*TODO*/ }) {
         Text(text = "Solicitar estado del automóvil")
     }
