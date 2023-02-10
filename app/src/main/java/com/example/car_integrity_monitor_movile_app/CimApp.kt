@@ -17,7 +17,7 @@ fun CimAppBar(
     modifier: Modifier = Modifier
 ){
     TopAppBar(
-        title = { Text("App Name") },
+        title = { Text(stringResource(id = R.string.app_name)) },
         modifier = modifier,
         navigationIcon = {
             IconButton(onClick = { /*TODO*/ }) {

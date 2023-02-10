@@ -3,4 +3,8 @@
     <string name="car_state">Estado</string>
     <string name="car_anomaly">Anomalia</string>
     <string name="notification">notificación</string>
+    <string name="car_state_button">Solicitar estado del automóvil</string>
+    <string name="car_state_route">State</string>
+    <string name="car_anomaly_route">Anomaly</string>
+    <string name="car_notification_route">Notification</string>
 </resources>
