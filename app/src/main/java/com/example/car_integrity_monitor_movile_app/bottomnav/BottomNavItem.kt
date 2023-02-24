@@ -1,9 +1,15 @@
 package com.example.car_integrity_monitor_movile_app.bottomnav
 
+import androidx.annotation.DrawableRes
+import androidx.annotation.StringRes
 import androidx.compose.ui.res.stringResource
 import com.example.car_integrity_monitor_movile_app.R
 
-sealed class BottomNavItem(var title:Int, var icon:Int, var screen_route:Int){
+sealed class BottomNavItem(
+    @StringRes val title: Int,
+    @DrawableRes val icon: Int,
+    @StringRes val screen_route: Int,
+){
     object CarState: BottomNavItem(
         R.string.car_state,
         R.drawable.ic_car_state,

@@ -4,6 +4,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Menu
+import androidx.compose.material.icons.filled.Person
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
@@ -30,7 +31,7 @@ fun CimAppBar(
         navigationIcon = {
             IconButton(onClick = { /*TODO*/ }) {
                 Icon(
-                    imageVector = Icons.Filled.Menu,
+                    imageVector = Icons.Filled.Person,
                     contentDescription = "menu bar"
                 )
             }
@@ -61,7 +62,7 @@ fun CimBottomNavigationBar(
                 selected = selectedItem == index,
                 onClick = {
                     selectedItem = index
-                    navController.navigate(item.screen_route)
+                    navController.navigate(item.screen_route.toString())
                 }
             )
         }
@@ -88,16 +89,16 @@ fun CimApp(
 
         NavHost(
             navController = navController,
-            startDestination = CimScreen.CarState.name,
+            startDestination = BottomNavItem.CarState.screen_route.toString(),
             modifier = modifier.padding(it)
         ){
-            composable(CimScreen.CarState.name){
+            composable(BottomNavItem.CarState.screen_route.toString()){
                 CarStateScreen()
             }
-            composable(CimScreen.CarAnomaly.name){
+            composable(BottomNavItem.CarAnomaly.screen_route.toString()){
                 CarAnomalyScreen()
             }
-            composable(CimScreen.Notification.name){
+            composable(BottomNavItem.Notification.screen_route.toString()){
                 CarNotificationScreen()
             }
         }
