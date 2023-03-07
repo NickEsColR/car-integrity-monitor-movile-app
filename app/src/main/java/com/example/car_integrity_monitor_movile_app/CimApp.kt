@@ -15,10 +15,7 @@ import androidx.navigation.compose.composable
 //import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import com.example.car_integrity_monitor_movile_app.bottomnav.BottomNavItem
-import com.example.car_integrity_monitor_movile_app.ui.screens.CarAnomalyScreen
-import com.example.car_integrity_monitor_movile_app.ui.screens.CarNotificationScreen
-import com.example.car_integrity_monitor_movile_app.ui.screens.CarStateScreen
-import com.example.car_integrity_monitor_movile_app.ui.screens.CimScreen
+import com.example.car_integrity_monitor_movile_app.ui.screens.*
 
 
 @Composable
@@ -86,14 +83,17 @@ fun CimApp(
         topBar = { CimAppBar() },
         bottomBar = { CimBottomNavigationBar(navController = navController) }
     ) {
-
+        val carStateViewModel: CarStateViewModel = CarStateViewModel()
         NavHost(
             navController = navController,
             startDestination = BottomNavItem.CarState.screen_route.toString(),
             modifier = modifier.padding(it)
         ){
             composable(BottomNavItem.CarState.screen_route.toString()){
-                CarStateScreen()
+                CarStateScreen(
+                    carStateUiState = carStateViewModel.carStateUiState,
+                    retryAction = carStateViewModel::getCarStatus
+                )
             }
             composable(BottomNavItem.CarAnomaly.screen_route.toString()){
                 CarAnomalyScreen()
