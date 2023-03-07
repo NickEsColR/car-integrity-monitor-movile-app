@@ -7,4 +7,5 @@
     <string name="car_state_route">State</string>
     <string name="car_anomaly_route">Anomaly</string>
     <string name="car_notification_route">Notification</string>
+    <string name="loading_failed">Error al obtener los datos, por favor asegurese que el motor este encendido</string>
 </resources>
