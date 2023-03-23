@@ -10,7 +10,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
-import androidx.lifecycle.ViewModel
 import com.example.car_integrity_monitor_movile_app.R
 
 @Composable
@@ -31,13 +30,14 @@ fun CarStateScreen(
  * The car state screen displaying the entry message
  */
 @Composable
-fun EntryScreen(modifier: Modifier = Modifier, retryAction: () -> Unit){
+private fun EntryScreen(modifier: Modifier = Modifier, retryAction: () -> Unit){
     Box(
         contentAlignment = Alignment.Center,
         modifier = modifier.fillMaxSize()
+            .padding(16.dp)
     ) {
-        Column() {
-            Text(text = "Remember to start car engine for use this function in order to work")
+        Column{
+            Text(text = "Recuerda iniciar el vehículo para poder ver el estado")
             Button(onClick = retryAction) {
                 Text(text = stringResource(R.string.car_state_button))
             }
@@ -49,7 +49,7 @@ fun EntryScreen(modifier: Modifier = Modifier, retryAction: () -> Unit){
  * The car state screen displaying the loading message
  */
 @Composable
-fun LoadingScreen(modifier: Modifier = Modifier){
+private fun LoadingScreen(modifier: Modifier = Modifier){
     Box(
         contentAlignment = Alignment.Center,
         modifier = modifier.fillMaxSize()
@@ -66,8 +66,8 @@ fun LoadingScreen(modifier: Modifier = Modifier){
  * The car state screen displaying the state information
  */
 @Composable
-fun SuccessScreen(modifier: Modifier = Modifier, retryAction: () -> Unit){
-    Column {
+private fun SuccessScreen(modifier: Modifier = Modifier, retryAction: () -> Unit){
+    Column(modifier) {
         Text(text = "En esta pantalla se vera la información del estado")
         Button(onClick = retryAction) {
             Text(text = stringResource(R.string.car_state_button))
@@ -79,13 +79,13 @@ fun SuccessScreen(modifier: Modifier = Modifier, retryAction: () -> Unit){
  * The car state screen displaying the state error
  */
 @Composable
-fun ErrorScreen(modifier: Modifier = Modifier,retryAction:()->Unit){
+private fun ErrorScreen(modifier: Modifier = Modifier,retryAction:()->Unit){
     Column(
         modifier = modifier.fillMaxSize(),
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        Text(stringResource(R.string.loading_failed))
+        Text(stringResource(R.string.state_error))
         Button(onClick = retryAction) {
             Text(stringResource(R.string.car_state_button))
         }
