@@ -98,10 +98,21 @@ fun CimApp(
                 )
             }
             composable(BottomNavItem.CarAnomaly.screen_route.toString()){
-                CarAnomalyScreen()
+                val carAnomalyViewModel: CarAnomalyViewModel =
+                    viewModel(factory = CarAnomalyViewModel.Factory)
+                CarAnomalyScreen(
+                    carAnomalyState = carAnomalyViewModel.carAnomalyState,
+                    retryAction = carAnomalyViewModel::getCarAnomalies,
+                )
             }
             composable(BottomNavItem.Notification.screen_route.toString()){
-                CarNotificationScreen()
+                val carNotificationViewModel: CarNotificationViewModel =
+                    viewModel(factory = CarNotificationViewModel.Factory)
+                CarNotificationScreen(
+                    isNotificationActive = carNotificationViewModel.isNotificationActive,
+                    changeNotificationActiveState = carNotificationViewModel::changeNotificationActiveState,
+                    requestNotification = carNotificationViewModel::requestNotification,
+                )
             }
         }
     }
