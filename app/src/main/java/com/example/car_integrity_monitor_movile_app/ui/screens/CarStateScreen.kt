@@ -38,7 +38,7 @@ fun EntryScreen(modifier: Modifier = Modifier, retryAction: () -> Unit){
     ) {
         Column() {
             Text(text = "Remember to start car engine for use this function in order to work")
-            Button(onClick = { retryAction }) {
+            Button(onClick = retryAction) {
                 Text(text = stringResource(R.string.car_state_button))
             }
         }
@@ -69,7 +69,7 @@ fun LoadingScreen(modifier: Modifier = Modifier){
 fun SuccessScreen(modifier: Modifier = Modifier, retryAction: () -> Unit){
     Column {
         Text(text = "En esta pantalla se vera la información del estado")
-        Button(onClick = { retryAction }) {
+        Button(onClick = retryAction) {
             Text(text = stringResource(R.string.car_state_button))
         }
     }

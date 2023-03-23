@@ -4,7 +4,11 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
+import androidx.lifecycle.viewmodel.initializer
+import androidx.lifecycle.viewmodel.viewModelFactory
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import java.io.IOException
 
@@ -19,10 +23,23 @@ class CarStateViewModel: ViewModel() {
     fun getCarStatus(){
         viewModelScope.launch {
             carStateUiState = CarStateUiState.Loading
-            carStateUiState = try {
-                CarStateUiState.Success
-            }catch (e: IOException){
-                CarStateUiState.Error
+//            carStateUiState = try {
+//                CarStateUiState.Success
+//            }catch (e: IOException){
+//                CarStateUiState.Error
+//            }
+            delay(10000L)
+            carStateUiState = CarStateUiState.Success
+        }
+    }
+
+    /**
+     * Factory for CarStateViewModel
+     */
+    companion object {
+        val Factory: ViewModelProvider.Factory = viewModelFactory {
+            initializer {
+                CarStateViewModel()
             }
         }
     }

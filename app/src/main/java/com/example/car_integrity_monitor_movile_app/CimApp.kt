@@ -3,16 +3,16 @@ package com.example.car_integrity_monitor_movile_app
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Menu
 import androidx.compose.material.icons.filled.Person
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
+import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
-//import androidx.navigation.compose.currentBackStackEntryAsState
+//mport androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import com.example.car_integrity_monitor_movile_app.bottomnav.BottomNavItem
 import com.example.car_integrity_monitor_movile_app.ui.screens.*
@@ -83,13 +83,15 @@ fun CimApp(
         topBar = { CimAppBar() },
         bottomBar = { CimBottomNavigationBar(navController = navController) }
     ) {
-        val carStateViewModel: CarStateViewModel = CarStateViewModel()
+
         NavHost(
             navController = navController,
             startDestination = BottomNavItem.CarState.screen_route.toString(),
             modifier = modifier.padding(it)
         ){
             composable(BottomNavItem.CarState.screen_route.toString()){
+                val carStateViewModel: CarStateViewModel =
+                    viewModel(factory = CarStateViewModel.Factory)
                 CarStateScreen(
                     carStateUiState = carStateViewModel.carStateUiState,
                     retryAction = carStateViewModel::getCarStatus
