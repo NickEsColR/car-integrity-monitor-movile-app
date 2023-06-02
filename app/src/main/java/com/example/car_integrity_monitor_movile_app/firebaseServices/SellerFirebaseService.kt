@@ -46,5 +46,16 @@ class SellerFirebaseService : FirebaseMessagingService() {
         Handler(Looper.getMainLooper()).post {
             Toast.makeText(baseContext, "$title $body", Toast.LENGTH_SHORT).show()
         }
+        if(body!=null){
+            if (title?.equals("Anomalia detectada")==true) {
+                //print in console
+                println("Anomaly detected")
+                saveAnomalyDB(body)
+            }else if(title?.equals("Scanner")==true){
+                //load scanner data in car state repository
+
+            }
+        }
+
     }
 }

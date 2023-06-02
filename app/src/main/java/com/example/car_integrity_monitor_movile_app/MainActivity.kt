@@ -1,5 +1,7 @@
 package com.example.car_integrity_monitor_movile_app
 
+import android.content.ClipData
+import android.content.ClipboardManager
 import android.content.ContentValues.TAG
 import android.os.Bundle
 import android.util.Log
@@ -30,6 +32,9 @@ class MainActivity : ComponentActivity() {
             // send token to server app
             Log.d(TAG, token)
             Toast.makeText(baseContext, token, Toast.LENGTH_SHORT).show()
+            var clipboardManager = getSystemService(CLIPBOARD_SERVICE) as ClipboardManager
+            var clipData = ClipData.newPlainText("token", token)
+            clipboardManager.setPrimaryClip(clipData)
         }
         setContent {
             CarintegritymonitormovileappTheme {

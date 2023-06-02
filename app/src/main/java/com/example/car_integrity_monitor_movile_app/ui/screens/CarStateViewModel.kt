@@ -8,6 +8,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
 import androidx.lifecycle.viewmodel.initializer
 import androidx.lifecycle.viewmodel.viewModelFactory
+import com.example.car_integrity_monitor_movile_app.httpServices.requestCarState
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import java.io.IOException
@@ -21,6 +22,7 @@ class CarStateViewModel: ViewModel() {
      * Currently version just change status without information
      */
     fun getCarStatus(){
+        requestCarState()
         viewModelScope.launch {
             carStateUiState = CarStateUiState.Loading
 //            carStateUiState = try {
@@ -28,6 +30,7 @@ class CarStateViewModel: ViewModel() {
 //            }catch (e: IOException){
 //                CarStateUiState.Error
 //            }
+
             delay(10000L)
             carStateUiState = CarStateUiState.Success
         }

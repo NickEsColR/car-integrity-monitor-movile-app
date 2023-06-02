@@ -8,13 +8,16 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
 import androidx.lifecycle.viewmodel.initializer
 import androidx.lifecycle.viewmodel.viewModelFactory
+import com.example.car_integrity_monitor_movile_app.firebaseServices.getAllAnomaliesDB
+import com.example.car_integrity_monitor_movile_app.model.CarAnomaly
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
 class CarAnomalyViewModel: ViewModel(){
     var carAnomalyState: CarAnomalyState by mutableStateOf(CarAnomalyState.Loading)
         private set
-
+    var carAnomalies: List<CarAnomaly> by mutableStateOf(listOf())
+        private set
     /**
      * Initialize the car anomaly state to load information
      */
@@ -27,11 +30,13 @@ class CarAnomalyViewModel: ViewModel(){
      * currentrly version just change status without information
      */
     fun getCarAnomalies() {
+        carAnomalies = getAllAnomaliesDB()
         viewModelScope.launch {
             delay(10000L)
             carAnomalyState = CarAnomalyState.Success
         }
     }
+
 
     /**
      * Factory for CarAnomalyViewModel
