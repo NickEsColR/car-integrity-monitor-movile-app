@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">car-integrity-monitor-movile-app</string>
+    <string name="app_name">Car Integrity Monitor</string>
     <string name="car_state">Estado</string>
     <string name="car_anomaly">Anomalia</string>
     <string name="notification">notificación</string>
@@ -8,4 +8,24 @@
     <string name="car_anomaly_route">Anomaly</string>
     <string name="car_notification_route">Notification</string>
     <string name="state_error">Error al obtener los datos, por favor asegurese que el motor este encendido</string>
+    <string name="notification_deactivate">Desactivar notificación</string>
+    <string name="notification_activate">Activar notificación</string>
+    <string name="notification_deactivate_description">
+        " permite al propietario abrir su vehiculo sin que se active la alarma de la aplicación. Una vez pulsado, el botón cambiara a "
+    </string>
+    <string name="notification_activate_description"> que reactivara la alarma de la aplicación.</string>
+    <string name="anomaly_letter_p">Problemas en el motor</string>
+    <string name="anomaly_title">Lista de las Anomalias registradas</string>
+    <string name="anomaly_error">Error al cargar la lista de anomalias</string>
+    <string name="retry_string">Reintentar</string>
+    <string name="carstate_title">Estado del automovil en tiempo real</string>
+    <string name="about_app_description">Esta app fue desarrollada para brindar información sobre el automovil, detectar anomalias e intrusos.</string>
+    <string name="about_app_title">Acerca de la app</string>
+    <string name="entry_description">Recuerda iniciar el vehículo para poder ver el estado en tiempo real</string>
+    <string name="speed_title">velocidad</string>
+    <string name="rpm_title">RPM</string>
+    <string name="temperature_title">Temperatura</string>
+    <string name="airflow_title">Masa de aire</string>
+    <string name="throttle_title">Posición del acelerador</string>
+    <string name="loading_text">Loading</string>
 </resources>

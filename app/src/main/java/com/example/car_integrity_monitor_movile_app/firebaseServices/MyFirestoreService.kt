@@ -4,15 +4,21 @@ import android.content.ContentValues.TAG
 import android.util.Log
 import com.example.car_integrity_monitor_movile_app.model.CarAnomaly
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.gson.Gson
 
-var db = FirebaseFirestore.getInstance()
+private var db = FirebaseFirestore.getInstance()
 
 private lateinit var anomalies: ArrayList<CarAnomaly>
+private var gson = Gson()
 
+/**
+ * Save an anomaly in the database
+ * @param anomaly String
+ * @return Unit
+ */
 fun saveAnomalyDB(anomaly: String) {
-    val document = hashMapOf(
-        "anomaly" to anomaly
-    )
+
+    val document = gson.fromJson(anomaly, HashMap::class.java) as HashMap<String, String>
     db.collection("anomalies")
         .add(document)
         .addOnSuccessListener { documentReference ->
@@ -23,6 +29,10 @@ fun saveAnomalyDB(anomaly: String) {
         }
 }
 
+/**
+ * Get all anomalies from the database
+ * @return ArrayList<CarAnomaly>
+ */
 fun getAllAnomaliesDB(): ArrayList<CarAnomaly> {
     anomalies = ArrayList()
     db.collection("anomalies")

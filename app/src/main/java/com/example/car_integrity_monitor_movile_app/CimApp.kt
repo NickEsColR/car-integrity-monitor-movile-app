@@ -12,12 +12,15 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
-//mport androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import com.example.car_integrity_monitor_movile_app.bottomnav.BottomNavItem
 import com.example.car_integrity_monitor_movile_app.ui.screens.*
 
-
+/**
+ * Function that creates the app bar
+ * @param modifier
+ * @return Unit
+ */
 @Composable
 fun CimAppBar(
     modifier: Modifier = Modifier
@@ -36,6 +39,12 @@ fun CimAppBar(
     )
 }
 
+/**
+ * Function that creates the bottom navigation bar
+ * @param modifier
+ * @param navController
+ * @return Unit
+ */
 @Composable
 fun CimBottomNavigationBar(
     modifier: Modifier = Modifier,
@@ -66,6 +75,21 @@ fun CimBottomNavigationBar(
     }
 }
 
+/**
+ * CimApp is the main entry point of the app.
+ * It is responsible for setting up the navigation graph
+ * @param modifier
+ * @param navController
+ * @see CimAppBar
+ * @see CimBottomNavigationBar
+ * @see CarStateScreen
+ * @see CarAnomalyScreen
+ * @see CarNotificationScreen
+ * @see CarStateViewModel
+ * @see CarAnomalyViewModel
+ * @see CarNotificationViewModel
+ * @return Unit
+ */
 @Composable
 fun CimApp(
     modifier: Modifier = Modifier,
@@ -83,35 +107,36 @@ fun CimApp(
         topBar = { CimAppBar() },
         bottomBar = { CimBottomNavigationBar(navController = navController) }
     ) {
-
+        val carStateViewModel: CarStateViewModel =
+            viewModel(factory = CarStateViewModel.Factory)
+        val carAnomalyViewModel: CarAnomalyViewModel =
+            viewModel(factory = CarAnomalyViewModel.Factory)
+        val carNotificationViewModel: CarNotificationViewModel =
+            viewModel(factory = CarNotificationViewModel.Factory)
         NavHost(
             navController = navController,
             startDestination = BottomNavItem.CarState.screen_route.toString(),
             modifier = modifier.padding(it)
         ){
             composable(BottomNavItem.CarState.screen_route.toString()){
-                val carStateViewModel: CarStateViewModel =
-                    viewModel(factory = CarStateViewModel.Factory)
+
                 CarStateScreen(
                     carStateUiState = carStateViewModel.carStateUiState,
                     retryAction = carStateViewModel::getCarStatus
                 )
             }
             composable(BottomNavItem.CarAnomaly.screen_route.toString()){
-                val carAnomalyViewModel: CarAnomalyViewModel =
-                    viewModel(factory = CarAnomalyViewModel.Factory)
+
                 CarAnomalyScreen(
                     carAnomalyState = carAnomalyViewModel.carAnomalyState,
                     retryAction = carAnomalyViewModel::getCarAnomalies,
                 )
             }
             composable(BottomNavItem.Notification.screen_route.toString()){
-                val carNotificationViewModel: CarNotificationViewModel =
-                    viewModel(factory = CarNotificationViewModel.Factory)
+
                 CarNotificationScreen(
                     isNotificationActive = carNotificationViewModel.isNotificationActive,
-                    changeNotificationActiveState = carNotificationViewModel::changeNotificationActiveState,
-                    requestNotification = carNotificationViewModel::requestNotification,
+                    changeNotificationActiveState = carNotificationViewModel::changeNotificationActiveState
                 )
             }
         }

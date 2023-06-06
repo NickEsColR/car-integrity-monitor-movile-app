@@ -7,6 +7,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewmodel.initializer
 import androidx.lifecycle.viewmodel.viewModelFactory
+import com.example.car_integrity_monitor_movile_app.httpServices.changeSendAlarm
 
 class CarNotificationViewModel: ViewModel() {
     var isNotificationActive by mutableStateOf(true)
@@ -14,6 +15,7 @@ class CarNotificationViewModel: ViewModel() {
 
     /**
      * Factory for CarNotificationViewModel
+     * @return ViewModelProvider.Factory
      */
     companion object {
         val Factory: ViewModelProvider.Factory = viewModelFactory {
@@ -25,16 +27,11 @@ class CarNotificationViewModel: ViewModel() {
 
     /**
      * Change the notification active state
+     * @return Unit
      */
     fun changeNotificationActiveState() {
         isNotificationActive = !isNotificationActive
+        changeSendAlarm()
     }
 
-    /**
-     * request for a notification to the server
-     * TODO: implement
-     */
-    fun requestNotification() {
-        return //TODO
-    }
 }

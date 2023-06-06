@@ -30,11 +30,11 @@ class MainActivity : ComponentActivity() {
             val token = task.result
             Log.i("Token","FCM registration token: $token")
             // send token to server app
-            Log.d(TAG, token)
-            Toast.makeText(baseContext, token, Toast.LENGTH_SHORT).show()
-            var clipboardManager = getSystemService(CLIPBOARD_SERVICE) as ClipboardManager
-            var clipData = ClipData.newPlainText("token", token)
-            clipboardManager.setPrimaryClip(clipData)
+//            Log.d(TAG, token)
+//            Toast.makeText(baseContext, token, Toast.LENGTH_SHORT).show()
+//            var clipboardManager = getSystemService(CLIPBOARD_SERVICE) as ClipboardManager
+//            var clipData = ClipData.newPlainText("token", token)
+//            clipboardManager.setPrimaryClip(clipData)
         }
         setContent {
             CarintegritymonitormovileappTheme {
